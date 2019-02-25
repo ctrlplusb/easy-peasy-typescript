@@ -1,7 +1,7 @@
 import todos, { TodosModel } from "./todos";
 import notification, { NotificationModel } from "./notification";
 
-export type StoreModel = {
+export interface StoreModel {
   todos: TodosModel;
   notification: NotificationModel;
 };

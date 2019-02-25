@@ -5,6 +5,6 @@ const { useActions, useStore, useDispatch } = createTypedHooks<StoreModel>();
 
 export { useActions, useDispatch, useStore };
 
-const store = createStore<StoreModel>(model);
+const store = createStore(model);
 
 export default store;

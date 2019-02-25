@@ -1,6 +1,6 @@
 import { Action } from "easy-peasy";
 
-export type TodosModel = {
+export interface TodosModel {
   items: string[];
   add: Action<TodosModel, string>;
 };

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useStore, useActions } from "../store";
 
 export default function Todos() {
@@ -12,7 +12,7 @@ export default function Todos() {
   const [newTodo, setNewTodo] = useState("");
 
   // Reset the form state every time the todo items changes
-  useLayoutEffect(() => setNewTodo(""), [items]);
+  useEffect(() => setNewTodo(""), [items]);
 
   return (
     <div>
