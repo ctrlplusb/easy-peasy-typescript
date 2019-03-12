@@ -1,4 +1,4 @@
-import { Action, Listen, listen } from "easy-peasy";
+import { Action, action, Listen, listen, thunk } from "easy-peasy";
 import todosModel from "./todos";
 
 export interface NotificationModel {
@@ -9,13 +9,13 @@ export interface NotificationModel {
 
 const notification: NotificationModel = {
   msg: "",
-  set: (state, payload) => {
+  set: action((state, payload) => {
     state.msg = payload;
-  },
+  }),
   listeners: listen(on => {
-    on(todosModel.add, (actions, payload) => {
+    on(todosModel.add, thunk((actions, payload) => {
       actions.set(`Added "${payload}" to todos`);
-    });
+    }));
   })
 };
 
