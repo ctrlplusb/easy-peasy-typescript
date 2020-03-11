@@ -5,11 +5,11 @@ export interface TodosModel {
   add: Action<TodosModel, string>;
 }
 
-const todos: TodosModel = {
+const todosModel: TodosModel = {
   items: [],
   add: action((state, payload) => {
     state.items.push(payload);
   })
 };
 
-export default todos;
+export default todosModel;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useStore, useActions } from "../store";
+import { useStoreActions, useStoreState } from '../hooks';
 
 export default function Todos() {
   // Pull out state from our store
-  const items = useStore(state => state.todos.items);
+  const items = useStoreState(state => state.todos.items);
 
   // Pull out actions from our store
-  const add = useActions(actions => actions.todos.add);
+  const add = useStoreActions(actions => actions.todos.add);
 
   // Track our form state
   const [newTodo, setNewTodo] = useState("");
