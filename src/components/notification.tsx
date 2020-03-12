@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useStore, useActions } from "../store";
+import { useStoreActions, useStoreState } from '../hooks';
 
 export default function Notification() {
   // Pull the msg from store
-  const msg = useStore(state => state.notification.msg);
+  const msg = useStoreState(state => state.notification.msg);
 
   // Pull the set action from store
-  const set = useActions(actions => actions.notification.set);
+  const set = useStoreActions(actions => actions.notification.set);
 
   // We will reset the msg after 2s
   useEffect(() => {
@@ -15,8 +15,12 @@ export default function Notification() {
     return () => clearTimeout(timeout);
   }, [msg]);
 
+  if (!msg) {
+    return null;
+  }
+
   return (
-    <div style={{ position: "absolute", bottom: 10, right: 10, color: "blue" }}>
+    <div style={{ position: "absolute", bottom: 10, right: 10, color: "white", background: "black", padding: "30px" }}>
       {msg}
     </div>
   );

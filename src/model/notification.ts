@@ -1,22 +1,26 @@
-import { Action, action, Listen, listen, thunk } from "easy-peasy";
-import todosModel from "./todos";
+import { Action, action, ThunkOn, thunkOn } from "easy-peasy";
+import { StoreModel } from './index';
 
 export interface NotificationModel {
   msg: string;
   set: Action<NotificationModel, string>;
-  listeners: Listen<NotificationModel>;
+  onTodoAdded: ThunkOn<NotificationModel, {}, StoreModel>;
 }
 
-const notification: NotificationModel = {
+const notificationModel: NotificationModel = {
   msg: "",
   set: action((state, payload) => {
     state.msg = payload;
   }),
-  listeners: listen(on => {
-    on(todosModel.add, thunk((actions, payload) => {
-      actions.set(`Added "${payload}" to todos`);
-    }));
-  })
+  onTodoAdded: thunkOn(
+    // targetResolver resolving the addTodo action
+    (actions, storeActions) => storeActions.todos.add,
+    // action handler:
+    (actions, target) => {
+      console.log('hmmm: ', target.payload);
+      actions.set(`Added "${target.payload}" to todos`);
+    },
+  )
 };
 
-export default notification;
+export default notificationModel;

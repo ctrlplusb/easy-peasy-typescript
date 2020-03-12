@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from 'react';
+import { render } from 'react-dom';
 import { StoreProvider } from "easy-peasy";
 import App from "./components/app";
 
 import store from "./store";
 
-ReactDOM.render(
+render(
   <StoreProvider store={store}>
     <App />
   </StoreProvider>,
